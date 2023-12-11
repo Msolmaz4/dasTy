@@ -1,6 +1,9 @@
 import { Button, LinearProgress } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { postUser } from '../redux/userSlice';
 
 
 
@@ -8,10 +11,13 @@ interface Values {
   email: string;
   password: string;
   name:string;
-        firstname:string;
+  firstname:string;
 }
 
 function Signup() {
+  const data = useSelector(state=>state.user)
+  console.log(data)
+  const dispatch  = useDispatch()
   return (
     <div> 
     <Formik
@@ -46,6 +52,7 @@ function Signup() {
         setTimeout(() => {
           setSubmitting(false);
           console.log(values)
+          dispatch(postUser(values))
         }, 500);
       }}
     >
@@ -97,8 +104,7 @@ function Signup() {
         </Form>
       )}
     </Formik>
-    <div>
-       uye iseniy   sig  in </div>
+    <div><Link to='/'>uye iseniy   sig  in </Link>  </div>
     </div>
   );
 }

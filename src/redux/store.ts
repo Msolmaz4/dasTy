@@ -4,8 +4,9 @@ import userSlice from './userSlice'
 
 export const store = configureStore({
   reducer: {
-   counter :userSlice
+   user :userSlice
   },
+
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

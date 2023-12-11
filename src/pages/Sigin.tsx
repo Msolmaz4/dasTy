@@ -1,6 +1,7 @@
 import { Button, LinearProgress } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
+import { Link } from 'react-router-dom';
 
 
 interface Values {
@@ -62,7 +63,8 @@ const Sigin = () => {
       </Form>
     )}
   </Formik>
-  <div> uye iseniy   sig  up </div></div>
+
+  <div><Link to='/signup'>uye iseniy   sig  up </Link>  </div></div>
   )
 }
 
