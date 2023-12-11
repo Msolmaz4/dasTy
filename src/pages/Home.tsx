@@ -1,4 +1,4 @@
-import Signup from "./Signup"
+
 
  
 const Home = () => {
@@ -6,7 +6,7 @@ const Home = () => {
     <div>
         
 
-        <Signup/>
+      
     </div>
   )
 }

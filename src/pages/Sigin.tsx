@@ -61,7 +61,8 @@ const Sigin = () => {
         </Button>
       </Form>
     )}
-  </Formik></div>
+  </Formik>
+  <div> uye iseniy   sig  up </div></div>
   )
 }
 

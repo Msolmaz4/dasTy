@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
 
 
+
 interface Values {
   email: string;
   password: string;
@@ -17,8 +18,9 @@ function Signup() {
       initialValues={{
         email: '',
         password: '',
-        name:'',
+        lastname:'',
         firstname:'',
+        username:'',
       }}
       validate={(values) => {
         const errors: Partial<Values> = {};
@@ -29,7 +31,7 @@ function Signup() {
         ) {
           errors.email = 'Invalid email address';
         }
-        if (!values.name) {
+        if (!values.username) {
           errors.name = 'Required';
         }
         if (!values.password) {
@@ -51,28 +53,35 @@ function Signup() {
         <Form>
           <Field
             component={TextField}
-            name="email"
-            type="email"
-            label="Email"
+            name="username"
+            type="text"
+            label="Username"
           />
           <br />  <Field
             component={TextField}
-            type="password"
-            label="Password"
-            name="password"
+            type="text"
+            label="First Name"
+            name="firstname"
           /><br/>
           <Field
             component={TextField}
-            name="name"
+            name="lastname"
             type="text"
-            label="Name"
+            label="Last Name"
           />
           <br />
           <Field
             component={TextField}
-            type="firstname"
-            label="text"
-            name="firstname"
+            type="email"
+            label="Email"
+            name="email"
+          />
+          <br />
+          <Field
+            component={TextField}
+            type="password"
+            label="password"
+            name="password"
           />
           {isSubmitting && <LinearProgress />}
           <br />
@@ -88,7 +97,8 @@ function Signup() {
         </Form>
       )}
     </Formik>
-    <div> uye iseniy   sig  in </div>
+    <div>
+       uye iseniy   sig  in </div>
     </div>
   );
 }
