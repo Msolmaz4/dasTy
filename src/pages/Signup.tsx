@@ -2,8 +2,9 @@ import { Button, LinearProgress } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { postUser } from '../redux/userSlice';
+import { useEffect } from 'react';
 
 
 
@@ -11,21 +12,28 @@ interface Values {
   email: string;
   password: string;
   name:string;
-  firstname:string;
+  firstName:string;
 }
 
 function Signup() {
   const data = useSelector(state=>state.user)
-  console.log(data)
+  const navi = useNavigate()
+  console.log(data,'sig')
   const dispatch  = useDispatch()
+
+  useEffect(()=>{
+    if(data.data.token){
+      navi('/')
+    }
+  },[dispatch])
   return (
     <div> 
     <Formik
       initialValues={{
         email: '',
         password: '',
-        lastname:'',
-        firstname:'',
+        lastName:'',
+        firstName:'',
         username:'',
       }}
       validate={(values) => {
@@ -43,8 +51,8 @@ function Signup() {
         if (!values.password) {
           errors.password = 'Required';
         }
-        if (!values.firstname) {
-          errors.firstname = 'Required';
+        if (!values.firstName) {
+          errors.firstName = 'Required';
         }
         return errors;
       }}
@@ -68,11 +76,11 @@ function Signup() {
             component={TextField}
             type="text"
             label="First Name"
-            name="firstname"
+            name="firstName"
           /><br/>
           <Field
             component={TextField}
-            name="lastname"
+            name="lastName"
             type="text"
             label="Last Name"
           />
@@ -96,7 +104,7 @@ function Signup() {
             variant="contained"
             color="primary"
             disabled={isSubmitting}
-            onClick={submitForm}
+            onClick={submitForm }
           >
             Submit
           </Button>

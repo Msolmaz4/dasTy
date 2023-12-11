@@ -15,14 +15,14 @@ loading:false,
 error:''
 }
 
-export const postUser = createAsyncThunk('getUser',async(values)=>{
+export const postUser = createAsyncThunk('/getUser',async(values)=>{
 console.log(values,'ilkyer')
 const { data } = await axios.post(
   "https://17106.fullstack.clarusway.com/users/",
   values
 );
 console.log("register",data);
-return data
+return await data
  
 })
 
@@ -42,8 +42,6 @@ export const userSlice = createSlice({
      console.log(payload,'builder')
       state.data = payload,
       state.loading = false
-     
-
     })
   }
 })
