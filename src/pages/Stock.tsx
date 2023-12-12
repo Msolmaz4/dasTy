@@ -1,9 +1,14 @@
 
 
+
+
 const Stock = () => {
   return (
-    <div>Stock</div>
-  )
+<div style={{border:'2px solid red' ,width:'600px',height:'600px'}}>
+denemeeeeeevcvcvcvcvcvcvcvcvcvee
+</div>
+   
+  );
 }
 
-export default Stock
+export default Stock;

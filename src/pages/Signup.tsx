@@ -1,10 +1,12 @@
 import { Button, LinearProgress } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,} from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { postUser } from '../redux/userSlice';
-import { useEffect } from 'react';
+
+
+
 
 
 
@@ -16,16 +18,15 @@ interface Values {
 }
 
 function Signup() {
-  const data = useSelector(state=>state.user)
+
   const navi = useNavigate()
-  console.log(data,'sig')
+
+
+
   const dispatch  = useDispatch()
 
-  useEffect(()=>{
-    if(data.data.token){
-      navi('/')
-    }
-  },[dispatch])
+
+
   return (
     <div> 
     <Formik
@@ -59,8 +60,10 @@ function Signup() {
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           setSubmitting(false);
-          console.log(values)
-          dispatch(postUser(values))
+         
+         dispatch(postUser(values))
+      
+          navi('/'); 
         }, 500);
       }}
     >
@@ -70,7 +73,7 @@ function Signup() {
             component={TextField}
             name="username"
             type="text"
-            label="Username"
+            label="UserName"
           />
           <br />  <Field
             component={TextField}

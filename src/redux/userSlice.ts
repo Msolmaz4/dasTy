@@ -7,6 +7,7 @@ export interface userState {
    data:User | null,
    loading:boolean,
    error:string
+
 }
  
 const initialState: userState = {
@@ -25,12 +26,22 @@ console.log("register",data);
 return await data
  
 })
+export const logUser = createAsyncThunk('/pos',async(values)=>{
+  console.log(values,'log')
+  const { data} = await axios.post("https://17106.fullstack.clarusway.com/auth/login/",
+  values)
+  console.log(data,'logus')
+return data
+})
 
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    reset:(state)=>{
+       state.data= ''
+    },
    
   },
   extraReducers:(builder)=>{
@@ -39,7 +50,16 @@ export const userSlice = createSlice({
       state.error=""
     }),
     builder.addCase(postUser.fulfilled,(state,{payload})=>{
-     console.log(payload,'builder')
+   
+      state.data = payload,
+      state.loading = false
+    })
+    builder.addCase(logUser.pending,(state)=>{
+      state.loading = true,
+      state.error=""
+    }),
+    builder.addCase(logUser.fulfilled,(state,{payload})=>{
+   
       state.data = payload,
       state.loading = false
     })
@@ -47,7 +67,7 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {  } = userSlice.actions
+export const { reset } = userSlice.actions
 
 export default userSlice.reducer
 

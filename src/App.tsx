@@ -1,10 +1,10 @@
 
-import { useRoutes } from "react-router-dom"
-import routes from "./routes"
+
+import Routes from "./routes"
 
 const App = () => {
 
-  return useRoutes(routes)
+  return <Routes/>
   
 }
 

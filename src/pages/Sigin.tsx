@@ -1,7 +1,10 @@
 import { Button, LinearProgress } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logUser, reset } from '../redux/userSlice';
+
 
 
 interface Values {
@@ -10,6 +13,13 @@ interface Values {
 }
 
 const Sigin = () => {
+ const navi = useNavigate()
+const dispatch = useDispatch()
+
+  const derleme = ()=>{
+ navi('/signup')
+ dispatch(reset())
+  }
   return (
     <div> <h1>signin</h1>
         <Formik
@@ -31,7 +41,8 @@ const Sigin = () => {
     onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
         setSubmitting(false);
-        alert(JSON.stringify(values, null, 2));
+        dispatch(logUser(values))
+      navi('/stock')
       }, 500);
     }}
   >
@@ -64,7 +75,7 @@ const Sigin = () => {
     )}
   </Formik>
 
-  <div><Link to='/signup'>uye iseniy   sig  up </Link>  </div></div>
+  <div onClick={derleme}> uye degilseniz uye olunuz </div></div>
   )
 }
 
