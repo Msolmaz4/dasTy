@@ -18,6 +18,7 @@ import Typography from '@mui/material/Typography';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../redux/userSlice';
 import { Outlet, useNavigate } from 'react-router';
+import Menu from './Menu';
 
 const drawerWidth = 240;
 
@@ -43,29 +44,8 @@ const son = ()=>{
   dispatch(logOut())
   navi('/')
 }
-  const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        {['Dashboard', 'Purchases', 'Sales', 'Firms','Brands','Products'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index == 1 && <InboxIcon /> }
-                {index == 2 && <MailIcon /> }
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      
-    </div>
-  );
 
-  // Remove this const when copying and pasting into your project.
+ 
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
@@ -118,7 +98,7 @@ const son = ()=>{
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
-          {drawer}
+          <Menu/>
         </Drawer>
         <Drawer
           variant="permanent"
@@ -128,7 +108,7 @@ const son = ()=>{
           }}
           open
         >
-          {drawer}
+     <Menu/>
         </Drawer>
       </Box>
       <Box

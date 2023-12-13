@@ -1,7 +1,7 @@
 import { Button, LinearProgress } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-mui';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logUser, reset } from '../redux/userSlice';
 
@@ -15,6 +15,7 @@ interface Values {
 const Sigin = () => {
  const navi = useNavigate()
 const dispatch = useDispatch()
+const {data} = useSelector(state=>state.user)
 
   const derleme = ()=>{
  navi('/signup')
@@ -39,10 +40,13 @@ const dispatch = useDispatch()
       return errors;
     }}
     onSubmit={(values, { setSubmitting }) => {
-      setTimeout(() => {
+      setTimeout(async() => {
         setSubmitting(false);
-        dispatch(logUser(values))
-      navi('/stock')
+        await dispatch(logUser(values))
+      if(data.user){
+        navi('/stock')
+      }
+      console.log(data,'login olunca')
       }, 500);
     }}
   >
