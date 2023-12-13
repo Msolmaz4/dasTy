@@ -1,3 +1,4 @@
+import { Logout } from '@mui/icons-material'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
@@ -34,14 +35,22 @@ export const logUser = createAsyncThunk('/pos',async(values)=>{
 return data
 })
 
+export const logOut = createAsyncThunk('/',async()=>{
+ const {data} =  await axios.get(
+    "https://17106.fullstack.clarusway.com/auth/logout/"
+   
+  );
+  return data
+})
+
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    reset:(state)=>{
-       state.data= ''
-    },
+   reset:(state)=>{
+    state.data = null
+   }
    
   },
   extraReducers:(builder)=>{
@@ -61,6 +70,15 @@ export const userSlice = createSlice({
     builder.addCase(logUser.fulfilled,(state,{payload})=>{
    
       state.data = payload,
+      state.loading = false
+    })
+    builder.addCase(logOut.pending,(state)=>{
+      state.loading = true,
+      state.error=""
+    }),
+    builder.addCase(logOut.fulfilled,(state)=>{
+   
+      state.data = null,
       state.loading = false
     })
   }

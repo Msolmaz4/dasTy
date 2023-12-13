@@ -15,6 +15,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../redux/userSlice';
+import { useNavigate } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -27,13 +30,19 @@ interface Props {
 }
 
 export default function Stock(props: Props) {
+
+  const dispatch = useDispatch()
+  const navi = useNavigate()
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
+const son = ()=>{
+  dispatch(logOut())
+  navi('/')
+}
   const drawer = (
     <div>
       <Toolbar />
@@ -83,7 +92,7 @@ export default function Stock(props: Props) {
             <Typography variant="h6" noWrap component="div">
             logo
           </Typography>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" onClick={son}>
             logout
           </Typography>
           </Box>
