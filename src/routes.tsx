@@ -6,6 +6,8 @@ import Stock from './pages/Stock';
 
 
 
+
+
 const routes = [
     {
         path:'/',
@@ -15,15 +17,17 @@ const routes = [
         path:'/signup',
         element:<Signup/>
     },
+
+    {
+        path:'/stock',
+        element:<Stock/>
+    },
     {
         path:'*',
         element:<Eroro/>
     },
-    {
-        path: '/stock',
-        element:   <Stock/> 
-    }
-  
+   
+    
   
 
     
