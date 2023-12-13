@@ -6,22 +6,57 @@ import ListItemText from '@mui/material/ListItemText';
 
 import Divider from '@mui/material/Divider';
 import Toolbar from '@mui/material/Toolbar';
+import { useNavigate } from 'react-router';
+
+
+const linkt = [
+    {
+       icon:'r' ,
+       title:'Dashboard',
+       url:'/stock'
+    },
+    {
+       icon:'a' ,
+       title:'Purchases',
+       url:'/stock/'
+    },
+    {
+       icon:'c' ,
+       title:'Sales',
+       url:'/stock/sales'
+    },
+    {
+       icon:'d' ,
+       title:'Firms',
+       url:'/stock/firms'
+    },
+    {
+       icon:'e' ,
+       title:'Brands',
+       url:'/stock/brands'
+    },
+    {
+       icon:'f' ,
+       title:'Products',
+       url:'/stock/products'
+    },
+]
 
 
 const Menu = () => {
+    const navi = useNavigate()
   return (
     <div>
   <Toolbar />
       <Divider />
       <List>
-        {['Dashboard', 'Purchases', 'Sales', 'Firms','Brands','Products'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+        {linkt.map((links, index) => (
+          <ListItem key={index} disablePadding>
+            <ListItemButton onClick={()=>navi(`${links.url}`)}>
               <ListItemIcon>
-                {index == 1 &&' y '}
-                {index == 2 &&  'a'}
+               {links.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={links.title} />
             </ListItemButton>
           </ListItem>
         ))}
