@@ -4,14 +4,14 @@ import axios from 'axios'
 
 
 
-export interface userState {
-   data:User | null,
+export interface firmaState {
+   data:firma | null,
    loading:boolean,
    error:string
 
 }
  
-const initialState: userState = {
+const initialState: firmaState = {
 data:null,
 loading:false,
 error:''
@@ -35,22 +35,12 @@ export const logUser = createAsyncThunk('/pos',async(values)=>{
 return data
 })
 
-export const logOut = createAsyncThunk('/',async()=>{
- const {data} =  await axios.get(
-    "https://17106.fullstack.clarusway.com/auth/logout/"
-   
-  );
-  return data
-})
 
-
-export const userSlice = createSlice({
-  name: 'user',
+export const firmaSlice = createSlice({
+  name: 'firma',
   initialState,
   reducers: {
-   reset:(state)=>{
-    state.data = null
-   }
+ 
    
   },
   extraReducers:(builder)=>{
@@ -63,38 +53,17 @@ export const userSlice = createSlice({
       state.data = payload,
       state.loading = false
     })
-    builder.addCase(logUser.pending,(state)=>{
-      state.loading = true,
-      state.error=""
-    }),
-    builder.addCase(logUser.fulfilled,(state,{payload})=>{
-     
-      state.data = payload,
-      console.log(state.data,'log')
-      state.loading = false
-    })
-    builder.addCase(logOut.pending,(state)=>{
-      state.loading = true,
-      state.error=""
-    }),
-    builder.addCase(logOut.fulfilled,(state)=>{
    
-      state.data = null,
-      state.loading = false
-    })
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { reset } = userSlice.actions
+export const { } = firmaSlice.actions
 
-export default userSlice.reducer
+export default firmaSlice.reducer
 
 
-interface User {
-  email: string;
-  password: string;
-  lastname: string;
-  firstname: string;
-  username: string;
+
+interface firma {
+
 }

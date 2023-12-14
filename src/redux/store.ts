@@ -12,6 +12,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
+import firmaSlice from './firmaSlice'
+
 const persistConfig = {
   key: 'root',
   storage,
@@ -20,6 +22,7 @@ const persistedReducer = persistReducer(persistConfig, userSlice)
 export const store = configureStore({
   reducer: {
    user :persistedReducer,
+  firma:firmaSlice,
   
   },
   middleware: (getDefaultMiddleware) =>

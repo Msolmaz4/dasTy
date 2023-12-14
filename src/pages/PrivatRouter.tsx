@@ -1,20 +1,14 @@
 import { useSelector } from "react-redux"
-import { Outlet, useNavigate } from "react-router"
-
+import { Navigate, Outlet } from "react-router"
+import Stock from "./Stock"
 
 
 const PrivatRouter = () => {
+  const {data} = useSelector(state=>state.user)
+  console.log(data,'deeee')
 
- const data  = useSelector(state=>state.user)
-  const navi = useNavigate()
- console.log(data.data?.user?.username,'privarttttttt')
-   return data.data?.user?.username ? <Outlet/> : navi('/')
-
+  return data?.token ? <Outlet/> :Navigate('/')
 }
-
-
-
-
 
 export default PrivatRouter
 

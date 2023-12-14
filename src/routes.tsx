@@ -9,6 +9,13 @@ import Brands from "./pages/Brands";
 import Products from "./pages/Products";
 import Purchases from "./pages/Purchases";
 
+
+
+
+
+
+
+
 const routes = [
   {
     path: "/",
@@ -21,12 +28,12 @@ const routes = [
 
   {
     path: "stock",
-    element: <Stock/>,
-    auth: false,
+    element: <Stock/> ,
+    auth: true,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Home/>,
       },
 
       {

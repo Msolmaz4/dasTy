@@ -18,7 +18,7 @@ const linkt = [
     {
        icon:'a' ,
        title:'Purchases',
-       url:'/stock/'
+       url:'/stock/purchases'
     },
     {
        icon:'c' ,
