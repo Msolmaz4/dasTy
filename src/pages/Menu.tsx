@@ -7,6 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Toolbar from '@mui/material/Toolbar';
 import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const linkt = [
@@ -45,6 +46,8 @@ const linkt = [
 
 const Menu = () => {
     const navi = useNavigate()
+    const dispatch = useDispatch()
+   
   return (
     <div>
   <Toolbar />

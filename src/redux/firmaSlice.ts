@@ -1,69 +1,73 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-
-
+interface Company {
+  _id: string;
+  name: string;
+  phone: string;
+  address: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
 
 export interface firmaState {
-   data:firma | null,
-   loading:boolean,
-   error:string
-
+  veri: Company | null;
+  loading: boolean;
+  error: string;
 }
- 
+
 const initialState: firmaState = {
-data:null,
-loading:false,
-error:''
-}
+  veri: null,
+  loading: false,
+  error: "",
+};
 
-export const postUser = createAsyncThunk('/getUser',async(values)=>{
-console.log(values,'ilkyer')
-const { data } = await axios.post(
-  "https://17106.fullstack.clarusway.com/users/",
-  values
-);
-console.log("register",data);
-return await data
- 
-})
-export const logUser = createAsyncThunk('/pos',async(values)=>{
-  console.log(values,'log')
-  const { data} = await axios.post("https://17106.fullstack.clarusway.com/auth/login/",
-  values)
-  console.log(data,'logus')
-return data
-})
+export const alleFirma = createAsyncThunk("/getUser", async (token) => {
+  const veri = await axios.get("https://17106.fullstack.clarusway.com/firms", {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+  console.log("alleFirma", veri);
+  return veri.data;
+});
+export const deleteFirma = createAsyncThunk("/deletre", async (id) => {
+  const veri = await axios.delete("https://17106.fullstack.clarusway.com/firms", id
+   
+  );
+  console.log("alleFirma", veri);
+  return veri.data;
+});
+
+
+
+
 
 
 export const firmaSlice = createSlice({
-  name: 'firma',
+  name: "firma",
   initialState,
-  reducers: {
- 
-   
-  },
-  extraReducers:(builder)=>{
-    builder.addCase(postUser.pending,(state)=>{
-      state.loading = true,
-      state.error=""
+  reducers: {},
+
+  extraReducers: (builder) => {
+    builder.addCase(alleFirma.pending, (state) => {
+      (state.loading = true), (state.error = "");
     }),
-    builder.addCase(postUser.fulfilled,(state,{payload})=>{
-   
-      state.data = payload,
-      state.loading = false
-    })
-   
-  }
-})
+      builder.addCase(alleFirma.fulfilled, (state, { payload }) => {
+        (state.veri = payload), (state.loading = false);
+      });
+    builder.addCase(deleteFirma.pending, (state) => {
+      (state.loading = true), (state.error = "");
+    }),
+      builder.addCase(deleteFirma.fulfilled, (state, { payload }) => {
+        (state.veri = payload), (state.loading = false);
+      });
+  },
+});
 
 // Action creators are generated for each case reducer function
-export const { } = firmaSlice.actions
+export const {} = firmaSlice.actions;
 
-export default firmaSlice.reducer
-
-
-
-interface firma {
-
-}
+export default firmaSlice.reducer;
