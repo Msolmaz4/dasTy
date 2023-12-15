@@ -33,11 +33,15 @@ export const alleFirma = createAsyncThunk("/getUser", async (token) => {
   console.log("alleFirma", veri);
   return veri.data;
 });
-export const deleteFirma = createAsyncThunk("/deletre", async (id) => {
-  const veri = await axios.delete("https://17106.fullstack.clarusway.com/firms", id
-   
-  );
-  console.log("alleFirma", veri);
+export const deleteFirma = createAsyncThunk("/delete", async ({ id, token }) => {
+  console.log(id, 'dddddddddddd');
+  console.log(token, 'deletdirmaaaaaaaaaaa');
+  const veri = await axios.delete(`https://17106.fullstack.clarusway.com/firms/${id}`, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+  console.log("deleteFirma", veri);
   return veri.data;
 });
 
@@ -56,7 +60,8 @@ export const firmaSlice = createSlice({
       (state.loading = true), (state.error = "");
     }),
       builder.addCase(alleFirma.fulfilled, (state, { payload }) => {
-        (state.veri = payload), (state.loading = false);
+        state.veri = payload,
+         state.loading = false;
       });
     builder.addCase(deleteFirma.pending, (state) => {
       (state.loading = true), (state.error = "");

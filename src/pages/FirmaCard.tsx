@@ -5,11 +5,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { deleteFirma } from '../redux/firmaSlice';
 
-const  FirmaCard =({item})=> {
+const  FirmaCard =({item,token})=> {
     const dispatch = useDispatch()
+
+   
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -26,7 +28,7 @@ const  FirmaCard =({item})=> {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={()=>dispatch(deleteFirma(item._id))}>delete</Button>
+        <Button size="small" onClick={()=>dispatch(deleteFirma({id:item._id,token:token}))}>delete</Button>
         <Button size="small">update</Button>
       </CardActions>
     </Card>

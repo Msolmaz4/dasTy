@@ -18,7 +18,7 @@ error:''
 }
 
 export const postUser = createAsyncThunk('/getUser',async(values)=>{
-console.log(values,'ilkyer')
+
 const { data } = await axios.post(
   "https://17106.fullstack.clarusway.com/users/",
   values
@@ -28,7 +28,7 @@ return await data
  
 })
 export const logUser = createAsyncThunk('/pos',async(values)=>{
-  console.log(values,'log')
+
   const { data} = await axios.post("https://17106.fullstack.clarusway.com/auth/login/",
   values)
   console.log(data,'logus')
