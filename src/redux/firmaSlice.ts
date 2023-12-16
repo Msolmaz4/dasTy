@@ -24,7 +24,7 @@ const initialState: firmaState = {
   error: "",
 };
 
-export const alleFirma = createAsyncThunk("/getUser", async (token) => {
+export const alleFirma = createAsyncThunk("/get", async (token) => {
   const veri = await axios.get("https://17106.fullstack.clarusway.com/firms", {
     headers: {
       Authorization: `Token ${token}`,
@@ -44,7 +44,18 @@ export const deleteFirma = createAsyncThunk("/delete", async ({ id, token }) => 
   console.log("deleteFirma", veri);
   return veri.data;
 });
+export const neueFirma = createAsyncThunk("/neue", async ({values,token}) => {
+  console.log(values, 'dddddddddddd');
 
+  const veri = await axios.post(`https://17106.fullstack.clarusway.com/firms/`, values, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  })
+   
+  console.log("neue", veri);
+  return veri.data;
+});
 
 
 

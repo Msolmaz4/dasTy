@@ -8,10 +8,13 @@ import Typography from '@mui/material/Typography';
 import { useDispatch} from 'react-redux';
 import { deleteFirma } from '../redux/firmaSlice';
 
+
 const  FirmaCard =({item,token})=> {
     const dispatch = useDispatch()
+  console.log(token,'firmacard')
 
-   
+  
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
