@@ -4,6 +4,7 @@ import { RootState } from "../redux/store";
 import { alleFirma } from "../redux/firmaSlice";
 import FirmaCard from "./FirmaCard";
 import FirmsModal from "./FirmsModal";
+import useFirms from "../hooks/useFirms";
 
 
 const Firms =  () => {
@@ -15,14 +16,14 @@ const dispatch = useDispatch();
   const { veri } = useSelector((state:RootState) => state.firma);
   console.log(veri, "firmaveri");
 
-
+const {alleFirma} = useFirms()
 
 
   
 
   useEffect(() => {
-
-    dispatch(alleFirma(data?.token));
+alleFirma()
+   // dispatch(alleFirma(data?.token));
    
   }, [dispatch]); 
 

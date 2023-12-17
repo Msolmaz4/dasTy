@@ -24,15 +24,15 @@ const initialState: firmaState = {
   error: "",
 };
 
-export const alleFirma = createAsyncThunk("/get", async (token) => {
-  const veri = await axios.get("https://17106.fullstack.clarusway.com/firms", {
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-  });
-  console.log("alleFirma", veri);
-  return veri.data;
-});
+// export const alleFirma = createAsyncThunk("/get", async (token) => {
+//   const veri = await axios.get("https://17106.fullstack.clarusway.com/firms", {
+//     headers: {
+//       Authorization: `Token ${token}`,
+//     },
+//   });
+//   console.log("alleFirma", veri);
+//   return veri.data;
+// });
 export const deleteFirma = createAsyncThunk("/delete", async ({ id, token }) => {
   console.log(id, 'dddddddddddd');
   console.log(token, 'deletdirmaaaaaaaaaaa');
@@ -64,7 +64,12 @@ export const neueFirma = createAsyncThunk("/neue", async ({values,token}) => {
 export const firmaSlice = createSlice({
   name: "firma",
   initialState,
-  reducers: {},
+  reducers: {
+    getSuccess:(state,{payload})=>{
+      state.veri=payload,
+      state.loading = false;
+    }
+  },
 
   extraReducers: (builder) => {
     builder.addCase(alleFirma.pending, (state) => {
@@ -84,6 +89,6 @@ export const firmaSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {} = firmaSlice.actions;
+export const { getSuccess} = firmaSlice.actions;
 
 export default firmaSlice.reducer;
