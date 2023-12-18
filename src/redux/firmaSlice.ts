@@ -44,18 +44,18 @@ const initialState: firmaState = {
 //   console.log("deleteFirma", veri);
 //   return veri.data;
 // });
-export const neueFirma = createAsyncThunk("/neue", async ({values,token}) => {
-  console.log(values, 'dddddddddddd');
+// export const neueFirma = createAsyncThunk("/neue", async ({values,token}) => {
+//   console.log(values, 'dddddddddddd');
 
-  const veri = await axios.post(`https://17106.fullstack.clarusway.com/firms/`, values, {
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-  })
+//   const veri = await axios.post(`https://17106.fullstack.clarusway.com/firms/`, values, {
+//     headers: {
+//       Authorization: `Token ${token}`,
+//     },
+//   })
    
-  console.log("neue", veri);
-  return veri.data;
-});
+//   console.log("neue", veri);
+//   return veri.data;
+// });
 
 
 
@@ -73,6 +73,10 @@ export const firmaSlice = createSlice({
       state.veri=payload,
       state.loading = false;
     },
+    neueFirma:(state,{payload})=>{
+      state.veri=payload,
+      state.loading = false;
+    }
   },
 
   extraReducers: () => {
@@ -93,6 +97,6 @@ export const firmaSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getSuccess,deletSuccess} = firmaSlice.actions;
+export const { getSuccess,deletSuccess,neueFirma} = firmaSlice.actions;
 
 export default firmaSlice.reducer;

@@ -1,40 +1,29 @@
-import { Box, Button, Modal, TextField } from "@mui/material";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
-import { useSelector } from "react-redux";
-import useFirms from "../hooks/useFirms";
-
+import Modal from '@mui/material/Modal';
+import { useState } from 'react';
+import TextField from '@mui/material/TextField';
 const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
-const FirmsModal = ({open,handleOpen,handleClose,inp,setInp}) => {
-  const { data } = useSelector((state) => state.user);
-  const { neueFirm } = useFirms();
- 
-
-  
-
-  const handleC = (e) => {
-    setInp({ ...inp, [e.target.name]: e.target.value });
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
   };
-  const deneme = (e) => {
-    e.preventDefault();
+const DeatailModal = ({name}) => {
 
-    neueFirm({ values: inp, token: data?.token });
-    handleClose()
-  };
-
+    const [open, setOpen] =useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
   return (
-    <Box>
-      
+    <div>
+         <div>
+      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -42,53 +31,53 @@ const FirmsModal = ({open,handleOpen,handleClose,inp,setInp}) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Box
+        <Box
             component="form"
             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-            onSubmit={deneme}
+        
           >
             <TextField
               id="outlined-basic"
               label="Firma Name *"
               variant="outlined"
               name="name"
-              onChange={handleC}
+             
+           
             />
             <TextField
               id="outlined-basic"
               label="Adress *"
               variant="outlined"
               name="adress"
-              onChange={handleC}
+              
             />
             <TextField
               id="outlined-basic"
               label="Phone *"
               variant="outlined"
               name="phone"
-              onChange={handleC}
+             
             />
             <TextField
               id="outlined-basic"
               label="Image *"
               variant="outlined"
               name="image"
-              onChange={handleC}
+           
             />
             <Button
               type="submit"
               variant="contained"
-              onClick={(e) => {
-                deneme(e), handleClose();
-              }}
+            
             >
-              Create Firma{" "}
+              Updatae{" "}
             </Button>
           </Box>
         </Box>
       </Modal>
-    </Box>
-  );
-};
+    </div>
+    </div>
+  )
+}
 
-export default FirmsModal;
+export default DeatailModal

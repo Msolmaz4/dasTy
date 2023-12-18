@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getSuccess } from "../redux/firmaSlice";
+import { getSuccess, neueFirma } from "../redux/firmaSlice";
 
 const useFirms = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,30 @@ const useFirms = () => {
     }
   };
 
-  return { alleFirma, deleteFirma };
+   const neueFirm =  async ({values,token}) => {
+    try {
+       const veri = await axios.post(`https://17106.fullstack.clarusway.com/firms/`, values, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+    dispatch(neueFirmaa(veri))
+    alleFirma(token);
+
+    } catch (error) {
+      console.log(error)
+    }
+  
+  
+   
+     
+
+    
+  };
+
+
+
+  return { alleFirma, deleteFirma,neueFirm };
 };
 
 export default useFirms;

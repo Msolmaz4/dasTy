@@ -1,35 +1,50 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store"; 
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 import FirmaCard from "./FirmaCard";
 import FirmsModal from "./FirmsModal";
 import useFirms from "../hooks/useFirms";
-
-
-const Firms =  () => {
-
-const {alleFirma} = useFirms()
-  const { data } =  useSelector((state:RootState) => state.user);
-  console.log(data?.token, "user");
-
-  const { veri } = useSelector((state:RootState) => state.firma);
-  console.log(veri, "firmaveri");
+import { Button, Typography } from "@mui/material";
 
 
 
+const Firms = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [inp, setInp] = useState({
+    name: "",
+    adress: "",
+    phone: "",
+    image: "",
+  });
 
-  
+  const { alleFirma } = useFirms();
+  const { data } = useSelector((state: RootState) => state.user);
+
+  const { veri } = useSelector((state: RootState) => state.firma);
 
   useEffect(() => {
-alleFirma(data?.token)
-   // dispatch(alleFirma(data?.token));
-   
-  }, [veri]); 
+    alleFirma(data?.token);
+    // dispatch(alleFirma(data?.token));
+  }, []);
 
   return (
-    <div>   
-   <FirmsModal/>
+    <div>
+      <Typography gutterBottom variant="h5" component="div">
+        FIRMS
+      </Typography>
+      <Button variant="contained" onClick={handleOpen}>
+        New Firms
+      </Button>
+      <FirmsModal
+        open={open}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        inp={inp}
+        setInp={setInp}
+      />
       <div style={{ display: "flex", justifyContent: "center" }}> Firms</div>
 
       <div
@@ -41,7 +56,14 @@ alleFirma(data?.token)
         }}
       >
         {veri?.data?.map((item, index) => (
-          <FirmaCard key={index} item={item} token={data?.token} />
+          <FirmaCard
+            key={index}
+            item={item}
+            token={data?.token}
+            open={open}
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+          />
         ))}
       </div>
     </div>

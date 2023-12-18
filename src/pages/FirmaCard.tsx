@@ -6,10 +6,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import useFirms from "../hooks/useFirms";
+import DeatailModal from "./DeatailModal";
 
-const FirmaCard = ({ item, token }) => {
-  console.log(token, "firmacard");
+
+const FirmaCard = ({ item, token,open,handleOpen,handleClose,inp,setInp }) => {
+
   const { deleteFirma } = useFirms();
+  
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -33,7 +36,12 @@ const FirmaCard = ({ item, token }) => {
         >
           delete
         </Button>
-        <Button size="small">update</Button>
+        
+   
+       <DeatailModal name={item.name}/>
+        <Button size="small" onClick={()=>console.log(item._id)} > 
+      up
+           </Button>
       </CardActions>
     </Card>
   );
