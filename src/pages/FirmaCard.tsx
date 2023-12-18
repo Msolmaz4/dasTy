@@ -1,19 +1,15 @@
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { useDispatch} from 'react-redux';
-import { deleteFirma } from '../redux/firmaSlice';
+import useFirms from "../hooks/useFirms";
 
-
-const  FirmaCard =({item,token})=> {
-    const dispatch = useDispatch()
-  console.log(token,'firmacard')
-
-  
+const FirmaCard = ({ item, token }) => {
+  console.log(token, "firmacard");
+  const { deleteFirma } = useFirms();
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -27,14 +23,19 @@ const  FirmaCard =({item,token})=> {
           {item.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-         {item.address}
+          {item.address}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={()=>dispatch(deleteFirma({id:item._id,token:token}))}>delete</Button>
+        <Button
+          size="small"
+          onClick={() => deleteFirma({ id: item._id, token: token })}
+        >
+          delete
+        </Button>
         <Button size="small">update</Button>
       </CardActions>
     </Card>
   );
-}
-export default FirmaCard
+};
+export default FirmaCard;

@@ -33,17 +33,17 @@ const initialState: firmaState = {
 //   console.log("alleFirma", veri);
 //   return veri.data;
 // });
-export const deleteFirma = createAsyncThunk("/delete", async ({ id, token }) => {
-  console.log(id, 'dddddddddddd');
-  console.log(token, 'deletdirmaaaaaaaaaaa');
-  const veri = await axios.delete(`https://17106.fullstack.clarusway.com/firms/${id}`, {
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-  });
-  console.log("deleteFirma", veri);
-  return veri.data;
-});
+// export const deleteFirma = createAsyncThunk("/delete", async ({ id, token }) => {
+//   console.log(id, 'dddddddddddd');
+//   console.log(token, 'deletdirmaaaaaaaaaaa');
+//   const veri = await axios.delete(`https://17106.fullstack.clarusway.com/firms/${id}`, {
+//     headers: {
+//       Authorization: `Token ${token}`,
+//     },
+//   });
+//   console.log("deleteFirma", veri);
+//   return veri.data;
+// });
 export const neueFirma = createAsyncThunk("/neue", async ({values,token}) => {
   console.log(values, 'dddddddddddd');
 
@@ -68,27 +68,31 @@ export const firmaSlice = createSlice({
     getSuccess:(state,{payload})=>{
       state.veri=payload,
       state.loading = false;
-    }
+    },
+    deletSuccess:(state,{payload})=>{
+      state.veri=payload,
+      state.loading = false;
+    },
   },
 
-  extraReducers: (builder) => {
-    builder.addCase(alleFirma.pending, (state) => {
-      (state.loading = true), (state.error = "");
-    }),
-      builder.addCase(alleFirma.fulfilled, (state, { payload }) => {
-        state.veri = payload,
-         state.loading = false;
-      });
-    builder.addCase(deleteFirma.pending, (state) => {
-      (state.loading = true), (state.error = "");
-    }),
-      builder.addCase(deleteFirma.fulfilled, (state, { payload }) => {
-        (state.veri = payload), (state.loading = false);
-      });
+  extraReducers: () => {
+    // builder.addCase(alleFirma.pending, (state) => {
+    //   (state.loading = true), (state.error = "");
+    // }),
+    //   builder.addCase(alleFirma.fulfilled, (state, { payload }) => {
+    //     state.veri = payload,
+    //      state.loading = false;
+    //   });
+    // builder.addCase(deleteFirma.pending, (state) => {
+    //   (state.loading = true), (state.error = "");
+    // }),
+    //   builder.addCase(deleteFirma.fulfilled, (state, { payload }) => {
+    //     (state.veri = payload), (state.loading = false);
+    //   });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getSuccess} = firmaSlice.actions;
+export const { getSuccess,deletSuccess} = firmaSlice.actions;
 
 export default firmaSlice.reducer;

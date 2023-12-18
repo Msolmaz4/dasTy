@@ -1,27 +1,39 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getSuccess } from "../redux/firmaSlice";
 
-
-
-
 const useFirms = () => {
+  const dispatch = useDispatch();
 
- const {token} = useSelector(state=>state.user)
- const dispatch = useDispatch()
-
-   const alleFirma = async () => {
-    const veri = await axios.get("https://17106.fullstack.clarusway.com/firms", {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    });
-    console.log("alleFirma", veri);
-      dispatch(getSuccess(veri.data))  ;
+  const alleFirma = async (token) => {
+    try {
+      const veri = await axios.get("https://17106.fullstack.clarusway.com/firms", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      console.log("alleFirma", veri);
+      dispatch(getSuccess(veri.data));
+    } catch (error) {
+      console.error("alleFirma Error:", error);
+    }
   };
 
-  return alleFirma;
+  const deleteFirma = async ({ id, token }) => {
+    try {
+      await axios.delete(`https://17106.fullstack.clarusway.com/firms/${id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      console.log("Firma başarıyla silindi.");
+      alleFirma(token);
+    } catch (error) {
+      console.error("deleteFirma Error:", error);
+    }
+  };
+
+  return { alleFirma, deleteFirma };
 };
 
 export default useFirms;

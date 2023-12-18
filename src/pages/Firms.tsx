@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store"; 
-import { alleFirma } from "../redux/firmaSlice";
+
 import FirmaCard from "./FirmaCard";
 import FirmsModal from "./FirmsModal";
 import useFirms from "../hooks/useFirms";
@@ -9,23 +9,23 @@ import useFirms from "../hooks/useFirms";
 
 const Firms =  () => {
 
-
+const {alleFirma} = useFirms()
   const { data } =  useSelector((state:RootState) => state.user);
   console.log(data?.token, "user");
-const dispatch = useDispatch();
+
   const { veri } = useSelector((state:RootState) => state.firma);
   console.log(veri, "firmaveri");
 
-const {alleFirma} = useFirms()
+
 
 
   
 
   useEffect(() => {
-alleFirma()
+alleFirma(data?.token)
    // dispatch(alleFirma(data?.token));
    
-  }, [dispatch]); 
+  }, [veri]); 
 
   return (
     <div>   
