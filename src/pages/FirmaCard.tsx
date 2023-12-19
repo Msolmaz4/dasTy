@@ -15,9 +15,9 @@ const FirmaCard = ({ item, token}) => {
   const { deleteFirma } = useFirms();
  
   
-  const whatsappNumber = "4444444444444444"; // Buraya göndermek istediğiniz WhatsApp numarasını ekleyin
+  const whatsappNumber = "4444444444444444"; 
 
-  const whatsappMessage = `${item.name} ,${item.address}`;
+  const whatsappMessage = `isism: ${item.name}  adress:${item.address}`;
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -49,9 +49,9 @@ const FirmaCard = ({ item, token}) => {
        <DeatailModal name={item.name} address={item.address} image={item.image} phone={item.phone}/>
          <Button size="small" onClick={()=>console.log(item._id)} > 
          <WhatsappShareButton
-         url={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-          whatsappMessage
-        )}`}
+       url={`${
+        whatsappMessage
+      }`}
         >
           <WhatsappIcon size={28} round />
         </WhatsappShareButton>
