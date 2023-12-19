@@ -14,10 +14,9 @@ const FirmaCard = ({ item, token}) => {
 
   const { deleteFirma } = useFirms();
  
-  
-  const whatsappNumber = "4444444444444444"; 
 
-  const whatsappMessage = `isism: ${item.name}  adress:${item.address}`;
+
+  const whatsappMessage = `isism: ${item.name}  adress:${item.address} Firma:${item.phone}`;
 
   return (
     <Card sx={{ maxWidth: 345 }}>
