@@ -40,7 +40,7 @@ const DeatailModal = ({name,address,image,phone}) => {
   return (
     <div>
          <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Update</Button>
       <Modal
         open={open}
         onClose={handleClose}
