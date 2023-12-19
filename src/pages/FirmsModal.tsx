@@ -58,7 +58,7 @@ const FirmsModal = ({open,handleOpen,handleClose,inp,setInp}) => {
               id="outlined-basic"
               label="Adress *"
               variant="outlined"
-              name="adress"
+              name="address"
               onChange={handleC}
             />
             <TextField

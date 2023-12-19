@@ -9,7 +9,7 @@ import useFirms from "../hooks/useFirms";
 import DeatailModal from "./DeatailModal";
 
 
-const FirmaCard = ({ item, token,open,handleOpen,handleClose,inp,setInp }) => {
+const FirmaCard = ({ item, token}) => {
 
   const { deleteFirma } = useFirms();
   
@@ -18,7 +18,7 @@ const FirmaCard = ({ item, token,open,handleOpen,handleClose,inp,setInp }) => {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image={item.image}
         title="green iguana"
       />
       <CardContent>
@@ -27,6 +27,9 @@ const FirmaCard = ({ item, token,open,handleOpen,handleClose,inp,setInp }) => {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {item.address}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {item.phone}
         </Typography>
       </CardContent>
       <CardActions>
@@ -38,7 +41,7 @@ const FirmaCard = ({ item, token,open,handleOpen,handleClose,inp,setInp }) => {
         </Button>
         
    
-       <DeatailModal name={item.name}/>
+       <DeatailModal name={item.name} address={item.address} image={item.image} phone={item.phone}/>
         <Button size="small" onClick={()=>console.log(item._id)} > 
       up
            </Button>

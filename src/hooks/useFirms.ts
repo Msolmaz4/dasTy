@@ -5,13 +5,16 @@ import { getSuccess, neueFirma } from "../redux/firmaSlice";
 const useFirms = () => {
   const dispatch = useDispatch();
 
-  const alleFirma = async (token) => {
+  const alleFirma = async (token:string) => {
     try {
-      const veri = await axios.get("https://17106.fullstack.clarusway.com/firms", {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      const veri = await axios.get(
+        "https://17106.fullstack.clarusway.com/firms",
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
       console.log("alleFirma", veri);
       dispatch(getSuccess(veri.data));
     } catch (error) {
@@ -27,36 +30,33 @@ const useFirms = () => {
         },
       });
       console.log("Firma başarıyla silindi.");
-      alleFirma(token);
+      //alleFirma(token);
     } catch (error) {
       console.error("deleteFirma Error:", error);
     }
   };
 
-   const neueFirm =  async ({values,token}) => {
+  const neueFirm = async ({ values, token }) => {
+    console.log(values,token,'neuF')
     try {
-       const veri = await axios.post(`https://17106.fullstack.clarusway.com/firms/`, values, {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    })
-    dispatch(neueFirmaa(veri))
-    alleFirma(token);
-
+      const veri = await axios.post(
+        `https://17106.fullstack.clarusway.com/firms/`,
+        values,
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      console.log(veri.data,'neurFiemUseFirms')
+      dispatch(neueFirma(veri.data));
+      alleFirma(token);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  
-  
-   
-     
-
-    
   };
 
-
-
-  return { alleFirma, deleteFirma,neueFirm };
+  return { alleFirma, deleteFirma, neueFirm };
 };
 
 export default useFirms;

@@ -15,11 +15,28 @@ const style = {
     boxShadow: 24,
     p: 4,
   };
-const DeatailModal = ({name}) => {
+const DeatailModal = ({name,address,image,phone}) => {
 
     const [open, setOpen] =useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [inp, setInp] = useState({
+      name: name,
+      address: address,
+      phone: phone,
+      image: image,
+    });
+
+    const handleC = (e) => {
+      setInp({ ...inp, [e.target.name]: e.target.value });
+    };
+    const deneme = (e) => {
+      e.preventDefault();
+  
+     
+    };
+
+
   return (
     <div>
          <div>
@@ -34,13 +51,15 @@ const DeatailModal = ({name}) => {
         <Box
             component="form"
             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-        
+        onSubmit={deneme}
           >
             <TextField
               id="outlined-basic"
               label="Firma Name *"
               variant="outlined"
               name="name"
+              value={inp.name}
+              onChange={handleC}
              
            
             />
@@ -49,21 +68,24 @@ const DeatailModal = ({name}) => {
               label="Adress *"
               variant="outlined"
               name="adress"
-              
+              value={inp.address}
+              onChange={handleC}
             />
             <TextField
               id="outlined-basic"
               label="Phone *"
               variant="outlined"
               name="phone"
-             
+              value={inp.phone}
+              onChange={handleC}
             />
             <TextField
               id="outlined-basic"
               label="Image *"
               variant="outlined"
               name="image"
-           
+              value={inp.image}
+              onChange={handleC}
             />
             <Button
               type="submit"
