@@ -3,15 +3,14 @@ import { useDispatch } from "react-redux";
 import { getProSuccess, neueProduct } from "../redux/productSlice";
 
 export interface productSta {
-  id:string,
-  token:string,
+  id: string;
+  token: string;
   error: string;
 }
 
-
 const useProducts = () => {
-  const dispatch = useDispatch()
-  const allePro = async (token:string) => {
+  const dispatch = useDispatch();
+  const allePro = async (token: string) => {
     try {
       const prod = await axios.get(
         "https://17106.fullstack.clarusway.com/products/",
@@ -22,22 +21,24 @@ const useProducts = () => {
         }
       );
 
-  console.log(prod,'prod')
-  dispatch(getProSuccess(prod.data))
+      console.log(prod, "prod");
+      dispatch(getProSuccess(prod.data));
     } catch (error) {
       console.error("alleFirma Error:", error);
     }
   };
 
-
-  const deletePro = async ({ id, token }:productSta) => {
-    console.log(id,token ,"detelpro")
+  const deletePro = async ({ id, token }: productSta) => {
+    console.log(id, token, "detelpro");
     try {
-      await axios.delete(`https://17106.fullstack.clarusway.com/products/${id}`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axios.delete(
+        `https://17106.fullstack.clarusway.com/products/${id}`,
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
       console.log("Firma başarıyla silindi.");
       allePro(token);
     } catch (error) {
@@ -46,7 +47,7 @@ const useProducts = () => {
   };
 
   const neuePro = async ({ values, token }) => {
-    console.log(values,token,'neuProduct')
+    console.log(values, token, "neuProduct");
     try {
       const veri = await axios.post(
         `https://17106.fullstack.clarusway.com/products/`,
@@ -57,7 +58,7 @@ const useProducts = () => {
           },
         }
       );
-    
+
       dispatch(neueProduct(veri.data));
       allePro(token);
     } catch (error) {
@@ -65,11 +66,7 @@ const useProducts = () => {
     }
   };
 
+  return { allePro, deletePro, neuePro };
+};
 
-
-
-
- return {allePro,deletePro,neuePro}
-}
-
-export default useProducts
+export default useProducts;

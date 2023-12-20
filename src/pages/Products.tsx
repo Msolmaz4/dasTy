@@ -13,12 +13,15 @@ import ProductModal from "./ProductModal";
 
 const Products = () => {
   const { data } = useSelector((state: RootState) => state.user);
+  const { products } = useSelector((state) => state.product);
+
+
   const [info, setInfo] = useState({
     categoryId: "",
     brandId: "",
     name: "",
   });
-  const { products } = useSelector((state) => state.product);
+ 
   console.log(products?.data, "product");
 
   const { allePro, deletePro } = useProducts();
@@ -43,7 +46,7 @@ const Products = () => {
     } else {
       console.log("product adat hata var");
     }
-  }, []);
+  }, [products?.length]);
   return (
     <div>
       <Typography gutterBottom variant="h5" component="div">
@@ -56,7 +59,7 @@ const Products = () => {
         handleClose={handleClose}
         inp={info}
         setInp={setInfo}
-        product={products}
+        products={products}
         token= {data?.token}
       />
       <div>

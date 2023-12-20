@@ -29,7 +29,7 @@ const useFirms = () => {
           Authorization: `Token ${token}`,
         },
       });
-      console.log("Firma başarıyla silindi.");
+     
       alleFirma(token);
     } catch (error) {
       console.error("deleteFirma Error:", error);
@@ -37,7 +37,7 @@ const useFirms = () => {
   };
 
   const neueFirm = async ({ values, token }) => {
-    console.log(values,token,'neuF')
+    
     try {
       const veri = await axios.post(
         `https://17106.fullstack.clarusway.com/firms/`,

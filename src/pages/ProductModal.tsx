@@ -10,6 +10,7 @@ import {
 
 import Select from "@mui/material/Select";
 import useProducts from "../hooks/useProducts";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute" as "absolute",
@@ -23,8 +24,9 @@ const style = {
   p: 4,
 };
 
-const ProductModal = ({ open, handleClose, inp, setInp, product, token }) => {
+const ProductModal = ({ open, handleClose, inp, setInp, token,products }) => {
   const { neuePro } = useProducts();
+ 
   const handleChange = (e) => {
     setInp({ ...inp, [e.target.name]: e.target.value });
   };
@@ -65,7 +67,7 @@ const ProductModal = ({ open, handleClose, inp, setInp, product, token }) => {
                 label="Category"
                 onChange={handleChange}
               >
-                {product?.data?.map((item) => (
+                {products?.data?.map((item) => (
                   <MenuItem value={item.categoryId._id}>
                     {item.categoryId.name}
                   </MenuItem>
@@ -82,7 +84,7 @@ const ProductModal = ({ open, handleClose, inp, setInp, product, token }) => {
                 label="Category"
                 onChange={handleChange}
               >
-                {product?.data?.map((item) => (
+                {products?.data?.map((item) => (
                   <MenuItem value={item.brandId._id}>
                     {item.brandId.name}
                   </MenuItem>

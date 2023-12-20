@@ -40,6 +40,7 @@ export const productSlice = createSlice({
     },
     neueProduct:(state,{payload})=>{
       state.products=payload,
+      console.log(products,'redux')
       state.loading = false;
     },
   }
