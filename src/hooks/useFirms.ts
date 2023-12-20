@@ -30,7 +30,7 @@ const useFirms = () => {
         },
       });
       console.log("Firma başarıyla silindi.");
-      //alleFirma(token);
+      alleFirma(token);
     } catch (error) {
       console.error("deleteFirma Error:", error);
     }
