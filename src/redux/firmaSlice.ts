@@ -76,7 +76,11 @@ export const firmaSlice = createSlice({
     neueFirma:(state,{payload})=>{
       state.veri=payload,
       state.loading = false;
-    }
+    },
+    updateFirma:(state,{payload})=>{
+      state.veri=payload,
+      state.loading = false;
+    },
   },
 
   extraReducers: () => {
@@ -97,6 +101,6 @@ export const firmaSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getSuccess,deletSuccess,neueFirma} = firmaSlice.actions;
+export const { getSuccess,deletSuccess,neueFirma,updateFirma} = firmaSlice.actions;
 
 export default firmaSlice.reducer;

@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
+import useFirms from '../hooks/useFirms';
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -15,8 +16,8 @@ const style = {
     boxShadow: 24,
     p: 4,
   };
-const DeatailModal = ({name,address,image,phone}) => {
-
+const DeatailModal = ({name,address,image,phone,id,token}) => {
+const {updatefirma} = useFirms()
     const [open, setOpen] =useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -32,7 +33,8 @@ const DeatailModal = ({name,address,image,phone}) => {
     };
     const deneme = (e) => {
       e.preventDefault();
-  
+   updatefirma({id:id,values:inp,token:token})
+ handleClose()
      
     };
 
@@ -67,7 +69,7 @@ const DeatailModal = ({name,address,image,phone}) => {
               id="outlined-basic"
               label="Adress *"
               variant="outlined"
-              name="adress"
+              name="address"
               value={inp.address}
               onChange={handleC}
             />
@@ -92,7 +94,7 @@ const DeatailModal = ({name,address,image,phone}) => {
               variant="contained"
             
             >
-              Updatae{" "}
+              Updatae
             </Button>
           </Box>
         </Box>

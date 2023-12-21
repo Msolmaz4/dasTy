@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { Navigate, Outlet } from "react-router"
-import Stock from "./Stock"
+
 
 
 const PrivatRouter = () => {

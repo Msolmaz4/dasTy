@@ -45,7 +45,7 @@ const FirmaCard = ({ item, token}) => {
         </Button>
         
   
-       <DeatailModal name={item.name} address={item.address} image={item.image} phone={item.phone}/>
+       <DeatailModal name={item.name} address={item.address} image={item.image} phone={item.phone} id={item._id} token={token}/>
          <Button size="small" onClick={()=>console.log(item._id)} > 
          <WhatsappShareButton
        url={`${

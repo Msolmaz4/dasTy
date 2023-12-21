@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getSuccess, neueFirma } from "../redux/firmaSlice";
+import { getSuccess, neueFirma, updateFirma } from "../redux/firmaSlice";
 
 const useFirms = () => {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const useFirms = () => {
   const neueFirm = async ({ values, token }) => {
     
     try {
-      const veri = await axios.post(
+      const veri = await axios.patch(
         `https://17106.fullstack.clarusway.com/firms/`,
         values,
         {
@@ -56,7 +56,28 @@ const useFirms = () => {
     }
   };
 
-  return { alleFirma, deleteFirma, neueFirm };
+  const updatefirma = async ({ id,values, token }) => {
+    console.log(id,values,token ,'updateFirma')
+    try {
+      const veri = await axios.patch(
+        `https://17106.fullstack.clarusway.com/firms/${id}`,
+        values,
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      console.log(veri.data,'neurFiemUseFirms')
+      dispatch(updateFirma(veri.data));
+      alleFirma(token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  return { alleFirma, deleteFirma, neueFirm,updatefirma };
 };
 
 export default useFirms;

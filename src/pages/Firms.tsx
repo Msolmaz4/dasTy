@@ -53,7 +53,7 @@ const Firms = () => {
         }}
       >
         {veri?.data?.map((item, index) => (
-          <FirmaCard key={index} item={item} token={data?.token} />
+          <FirmaCard key={index} item={item} token={data?.token}  />
         ))}
       </div>
     </div>
