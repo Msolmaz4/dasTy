@@ -5,7 +5,7 @@ import { getSuccess, neueFirma, updateFirma } from "../redux/firmaSlice";
 const useFirms = () => {
   const dispatch = useDispatch();
 
-  const alleFirma = async (token:string) => {
+  const alleFirma = async (token: string) => {
     try {
       const veri = await axios.get(
         "https://17106.fullstack.clarusway.com/firms",
@@ -15,8 +15,8 @@ const useFirms = () => {
           },
         }
       );
-      console.log("alleFirma", veri);
-      dispatch(getSuccess(veri.data));
+      console.log("alleFirma", veri.data.data);
+      dispatch(getSuccess(veri.data.data));
     } catch (error) {
       console.error("alleFirma Error:", error);
     }
@@ -29,7 +29,7 @@ const useFirms = () => {
           Authorization: `Token ${token}`,
         },
       });
-     
+
       alleFirma(token);
     } catch (error) {
       console.error("deleteFirma Error:", error);
@@ -37,7 +37,6 @@ const useFirms = () => {
   };
 
   const neueFirm = async ({ values, token }) => {
-    
     try {
       const veri = await axios.patch(
         `https://17106.fullstack.clarusway.com/firms/`,
@@ -48,16 +47,16 @@ const useFirms = () => {
           },
         }
       );
-      console.log(veri.data,'neurFiemUseFirms')
+      console.log(veri.data, "neurFiemUseFirms");
       dispatch(neueFirma(veri.data));
-      alleFirma(token);
+      // alleFirma(token);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const updatefirma = async ({ id,values, token }) => {
-    console.log(id,values,token ,'updateFirma')
+  const updatefirma = async ({ id, values, token }) => {
+    console.log(id, values, token, "updateFirma");
     try {
       const veri = await axios.patch(
         `https://17106.fullstack.clarusway.com/firms/${id}`,
@@ -68,7 +67,7 @@ const useFirms = () => {
           },
         }
       );
-      console.log(veri.data,'neurFiemUseFirms')
+      console.log(veri.data, "neurFiemUseFirms");
       dispatch(updateFirma(veri.data));
       alleFirma(token);
     } catch (error) {
@@ -76,8 +75,7 @@ const useFirms = () => {
     }
   };
 
-
-  return { alleFirma, deleteFirma, neueFirm,updatefirma };
+  return { alleFirma, deleteFirma, neueFirm, updatefirma };
 };
 
 export default useFirms;

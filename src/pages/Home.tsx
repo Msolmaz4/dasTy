@@ -1,11 +1,14 @@
+import HomeAreaCard from "./HomeAreaCard"
+import HomeCard from "./HomeCard"
 
 
  
 const Home = () => {
   return (
     <div>
-        
-       jgjkgj
+        <HomeCard/>
+        <HomeAreaCard/>
+  
       
     </div>
   )

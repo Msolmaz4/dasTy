@@ -11,6 +11,7 @@ const Firms = () => {
 
   const { data } = useSelector((state: RootState) => state.user);
   const { veri } = useSelector((state: RootState) => state.firma);
+  console.log(veri ,'firmsDataveri')
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -25,7 +26,7 @@ const Firms = () => {
     alleFirma(data?.token);
     // dispatch(alleFirma(data?.token));
   }, []);
-  console.log(veri?.data, "fimrs");
+  console.log(veri, "fimrs");
 
   return (
     <div>
@@ -52,7 +53,7 @@ const Firms = () => {
           gap: "10px",
         }}
       >
-        {veri?.data?.map((item, index) => (
+        {veri?.map((item, index) => (
           <FirmaCard key={index} item={item} token={data?.token}  />
         ))}
       </div>

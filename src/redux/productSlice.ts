@@ -1,5 +1,4 @@
-import {  createSlice } from "@reduxjs/toolkit";
-
+import { createSlice } from "@reduxjs/toolkit";
 
 interface Product {
   _id: string;
@@ -24,30 +23,20 @@ const initialState: productState = {
   error: "",
 };
 
-
-
-
-
-
 export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-
-    getProSuccess:(state,{payload})=>{
-      state.products=payload,
-      state.loading = false;
+    getProSuccess: (state, { payload }) => {
+      (state.products = payload), (state.loading = false);
     },
-    neueProduct:(state,{payload})=>{
-      state.products=payload,
-   
-      state.loading = false;
+    neueProduct: (state, { payload }) => {
+      (state.products = payload), (state.loading = false);
     },
-  }
-
+  },
 });
 
 // Action creators are generated for each case reducer function
-export const { getProSuccess,neueProduct} = productSlice.actions;
+export const { getProSuccess, neueProduct } = productSlice.actions;
 
 export default productSlice.reducer;

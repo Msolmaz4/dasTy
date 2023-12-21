@@ -39,7 +39,6 @@ const Brands = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        
           <TextField id="outlined-basic" label="Outlined" variant="outlined" />
           <TextField id="outlined-basic" label="Outlined" variant="outlined" />
           <Button variant="contained">Submit Brands </Button>
@@ -53,7 +52,7 @@ const Brands = () => {
           gap: "10px",
         }}
       >
-        {veri?.data?.map((item) => (
+        {veri?.map((item) => (
           <div>
             <BrandsCart item={item} />
           </div>

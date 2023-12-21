@@ -16,12 +16,14 @@ export interface firmaState {
   veri: Company | null;
   loading: boolean;
   error: string;
+  son: Company | null;
 }
 
 const initialState: firmaState = {
   veri: null,
   loading: false,
   error: "",
+  son:null,
 };
 
 // export const alleFirma = createAsyncThunk("/get", async (token) => {
@@ -66,7 +68,10 @@ export const firmaSlice = createSlice({
   initialState,
   reducers: {
     getSuccess:(state,{payload})=>{
+      console.log(payload,'getSucces')
+      
       state.veri=payload,
+      console.log(state.veri,'getveri')
       state.loading = false;
     },
     deletSuccess:(state,{payload})=>{
