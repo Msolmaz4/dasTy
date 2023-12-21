@@ -46,7 +46,7 @@ const Products = () => {
     } else {
       console.log("product adat hata var");
     }
-  }, [products?.length]);
+  }, [products?.data?.length]);
   return (
     <div>
       <Typography gutterBottom variant="h5" component="div">
