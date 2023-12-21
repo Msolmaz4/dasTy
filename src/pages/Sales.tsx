@@ -13,8 +13,24 @@ import {
   randomUpdatedDate,
 } from '@mui/x-data-grid-generator';
 import { Button, Typography } from "@mui/material";
+import useSales from "../hooks/useSales";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { RootState } from "../redux/store";
 
+
+export interface Token {
+  token: string;
+}
 export default function Sales() {
+  const { data } = useSelector((state: RootState) => state.user);
+ const {alleSales} = useSales()
+ const {sales} = useSelector(state=>state.sales)
+  console.log(sales)
+
+useEffect(()=>{
+  alleSales<Token>(data?.token);
+},[])
   return (
 <div> 
     <Typography gutterBottom variant="h5" component="div">
