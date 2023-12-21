@@ -45,10 +45,14 @@ const customTooltip = ({ payload, active }) => {
     <div className="w-56 rounded-tremor-default text-tremor-default bg-tremor-background p-2 shadow-tremor-dropdown border border-tremor-border">
       {payload.map((category, idx) => (
         <div key={idx} className="flex flex-1 space-x-2.5">
-          <div className={`w-1 flex flex-col bg-${category.color}-500 rounded`} />
+          <div
+            className={`w-1 flex flex-col bg-${category.color}-500 rounded`}
+          />
           <div className="space-y-1">
             <p className="text-tremor-content">{category.dataKey}</p>
-            <p className="font-medium text-tremor-content-emphasis">{category.value} bpm</p>  
+            <p className="font-medium text-tremor-content-emphasis">
+              {category.value} bpm
+            </p>
           </div>
         </div>
       ))}
@@ -58,39 +62,39 @@ const customTooltip = ({ payload, active }) => {
 
 const HomeAreaCard = () => {
   return (
-    <div  className="flex gap-4 justify-center items-center mt-24 ">
-
-  <div>  <Card>
-        <Title>Average BPM</Title>
-        <AreaChart
-          className="h-72 mt-4"
-          data={chartdata3}
-          index="date"
-          categories={["Distance Running"]}
-          colors={["blue"]}
-          yAxisWidth={30}
-          customTooltip={customTooltip}
-        />
-      </Card> </div>
-  <div> <Card>
-        <Title>Average BPM</Title>
-        <AreaChart
-          className="h-72 mt-4"
-          data={chartdata3}
-          index="date"
-          categories={["Distance Running"]}
-          colors={["blue"]}
-          yAxisWidth={30}
-          customTooltip={customTooltip}
-        />
-      </Card></div>
+    <div className="flex gap-4 mt-36">
+      <div className="w-1/2">
     
-      
-    
-
-
+        <Card>
+          <Title>Sales</Title>
+          <AreaChart
+            className="h-72 mt-4"
+            data={chartdata3}
+            index="date"
+            categories={["Distance Running"]}
+            colors={["gray"]}
+            yAxisWidth={30}
+            customTooltip={customTooltip}
+          />
+        </Card>{" "}
+      </div>
+      <div className="w-1/2">
+   
+        <Card>
+          <Title>Purchases</Title>
+          <AreaChart
+            className="h-72 mt-4"
+            data={chartdata3}
+            index="date"
+            categories={["Distance Running"]}
+            colors={["blue"]}
+            yAxisWidth={30}
+            customTooltip={customTooltip}
+          />
+        </Card>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomeAreaCard
+export default HomeAreaCard;

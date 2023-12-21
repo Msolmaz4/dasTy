@@ -1,4 +1,5 @@
 import { Card, Metric, Text, Flex, BadgeDelta, DeltaType, Grid } from "@tremor/react";
+import { useSelector } from "react-redux";
 
 const categories = [
   {
@@ -9,14 +10,14 @@ const categories = [
     deltaType: "moderateIncrease",
   },
   {
-    title: "Profit",
+    title: "Casch",
     metric: "$ 40,598",
     metricPrev: "$ 45,564",
     delta: "10.9%",
     deltaType: "moderateDecrease",
   },
   {
-    title: "Customers",
+    title: "Purchases",
     metric: "1,072",
     metricPrev: "856",
     delta: "25.3%",
@@ -25,6 +26,8 @@ const categories = [
 ];
 
 export default function HomeCard() {
+  const {products} =useSelector(state=>state.product)
+  console.log(products,'homecard')
   return (
     <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
       {categories.map((item) => (

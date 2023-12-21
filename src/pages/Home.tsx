@@ -6,8 +6,12 @@ import HomeCard from "./HomeCard"
 const Home = () => {
   return (
     <div>
-        <HomeCard/>
+     
+
+         <HomeCard/>
         <HomeAreaCard/>
+      
+       
   
       
     </div>
