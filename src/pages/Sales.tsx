@@ -25,6 +25,7 @@ export default function Sales() {
 
   useEffect(() => {
     //buradad dirk baslayiinca hata laiordum beklemek gerktigini ogtendim
+    //map icinde bi robje yazacaksan ({}) buna dikkat et 
     alleSales<Token>(data?.token);
     if (sales) {
       setRows(
@@ -33,6 +34,7 @@ export default function Sales() {
           date: item?.updatedAt,
           brand: item?.brandId?.name,
           product: item?.productId?.name,
+          quantity:item?.quantity,
           price: item?.price,
           amount: item?.productId?.quantity,
         }))
@@ -101,7 +103,9 @@ const columns = [
     type: "actions",
     width: 100,
     getActions: () => [
-      <GridActionsCellItem icon={<EditIcon />} label="Edit" />,
+      <GridActionsCellItem icon={<EditIcon />} label="Edit" onClick={()=>console.log(item._id)}/>,
+   
+
       <GridActionsCellItem icon={<DeleteIcon />} label="Delete" />,
     ],
   },

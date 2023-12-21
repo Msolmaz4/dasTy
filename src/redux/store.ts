@@ -3,6 +3,7 @@ import userSlice from "./userSlice";
 import firmaSlice from "./firmaSlice";
 import productSlice from "./productSlice";
 import saleSlice from "./saleSlice";
+import  purSlice  from "./purchasesSlice";
 
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     firma: firmaSlice,
     product:productSlice,
     sales:saleSlice,
+    purchases:purSlice,
   },
 });
 
