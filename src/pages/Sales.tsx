@@ -18,7 +18,7 @@ export interface Token {
 }
 export default function Sales() {
   const { data } = useSelector((state: RootState) => state.user);
-  const { alleSales } = useSales();
+  const { alleSales,deletSales } = useSales();
   const { sales } = useSelector((state: RootState) => state.sales);
 
   const [rows, setRows] = useState([]);
@@ -43,7 +43,11 @@ export default function Sales() {
   }, []);
   console.log(sales);
   
+  const handleDelete = (id) => {
 
+    console.log(`id: ${id}`);
+deletSales({id:id,token:data?.token})
+  };
   return (
     <div>
       <Typography gutterBottom variant="h5" component="div">
@@ -54,7 +58,7 @@ export default function Sales() {
         <DataGridPro
          
           rows={rows}
-          columns={columns}
+          columns={columns(handleDelete)} // onDelete prop'u eklenmiş columns fonksiyonu çağrılır
           slots={{
             toolbar: GridToolbar,
           }}
@@ -70,7 +74,7 @@ export default function Sales() {
   );
 }
 
-const columns = [
+const columns = (onDelete) => [
   { field: "date", headerName: "Date", width: 350 },
   { field: "brand", headerName: "Brand", type: "number" },
   {
@@ -102,11 +106,16 @@ const columns = [
     field: "actions",
     type: "actions",
     width: 100,
-    getActions: () => [
+    getActions: (params) => [
       <GridActionsCellItem icon={<EditIcon />} label="Edit" onClick={()=>console.log(item._id)}/>,
-   
+ 
 
-      <GridActionsCellItem icon={<DeleteIcon />} label="Delete" />,
+      <GridActionsCellItem
+        icon={<DeleteIcon />}
+        label="Delete"
+        onClick={() => onDelete(params.row.id)} 
+      />,
+     
     ],
   },
 ];

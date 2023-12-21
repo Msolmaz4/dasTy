@@ -29,11 +29,14 @@ export const saleSlice = createSlice({
   reducers: {
   getSales:(state,{payload})=>{
     state.sales = payload
-  }
+  },
+  getdeletSales:(state,{payload})=>{
+    state.sales = payload
+  },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getSales } = saleSlice.actions;
+export const { getSales ,getdeletSales} = saleSlice.actions;
 
 export default saleSlice.reducer;
