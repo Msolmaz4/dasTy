@@ -31,11 +31,10 @@ const {updatefirma} = useFirms()
     const handleC = (e) => {
       setInp({ ...inp, [e.target.name]: e.target.value });
     };
-    const deneme = (e) => {
+    const deneme = async(e) => {
       e.preventDefault();
-   updatefirma({id:id,values:inp,token:token})
- handleClose()
-     
+     await updatefirma({id:id,token:token ,values:inp})
+      handleClose()
     };
 
 

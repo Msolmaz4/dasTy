@@ -36,9 +36,10 @@ const useFirms = () => {
     }
   };
 
-  const neueFirm = async ({ values, token }) => {
+  const neueFirm = async ( {values, token} ) => {
+    console.log(values,'neuFirma')
     try {
-      const veri = await axios.patch(
+      const veri = await axios.post(
         `https://17106.fullstack.clarusway.com/firms/`,
         values,
         {
@@ -48,14 +49,14 @@ const useFirms = () => {
         }
       );
       console.log(veri.data, "neurFiemUseFirms");
-      dispatch(neueFirma(veri.data));
-      // alleFirma(token);
+      dispatch(neueFirma(veri?.data));
+    await alleFirma(token);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const updatefirma = async ({ id, values, token }) => {
+  const updatefirma = async ( id, token,values) => {
     console.log(id, values, token, "updateFirma");
     try {
       const veri = await axios.patch(

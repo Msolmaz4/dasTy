@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import {  createSlice } from "@reduxjs/toolkit";
+
 
 interface Company {
   _id: string;
@@ -13,7 +13,7 @@ interface Company {
 }
 
 export interface firmaState {
-  veri: Company | null;
+  veri: [] |Company | null;
   loading: boolean;
   error: string;
   son: Company | null;
@@ -69,7 +69,6 @@ export const firmaSlice = createSlice({
   reducers: {
     getSuccess:(state,{payload})=>{
       console.log(payload,'getSucces')
-      
       state.veri=payload,
       console.log(state.veri,'getveri')
       state.loading = false;
@@ -80,6 +79,7 @@ export const firmaSlice = createSlice({
     },
     neueFirma:(state,{payload})=>{
       state.veri=payload,
+      console.log(state.veri,"neuREDUX")
       state.loading = false;
     },
     updateFirma:(state,{payload})=>{

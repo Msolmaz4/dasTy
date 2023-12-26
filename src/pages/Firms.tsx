@@ -10,7 +10,7 @@ const Firms = () => {
   const { alleFirma } = useFirms();
 
   const { data } = useSelector((state: RootState) => state.user);
-  const { veri } = useSelector((state: RootState) => state.firma);
+  const { veri } = useSelector(state => state.firma);
   console.log(veri ,'firmsDataveri')
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -24,8 +24,8 @@ const Firms = () => {
 
   useEffect(() => {
     alleFirma(data?.token);
-    // dispatch(alleFirma(data?.token));
-  }, []);
+ 
+  }, [veri?.length]);
   console.log(veri, "fimrs");
 
   return (

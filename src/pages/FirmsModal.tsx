@@ -24,11 +24,11 @@ const FirmsModal = ({ open, handleOpen, handleClose, inp, setInp }) => {
   const handleC = (e) => {
     setInp({ ...inp, [e.target.name]: e.target.value });
   };
-  const deneme = (e) => {
+  const deneme = async(e) => {
     e.preventDefault();
-
-    neueFirm({ values: inp, token: data?.token });
-    handleClose();
+     console.log(inp,"inp",data?.token)
+    await neueFirm(inp,data?.token );
+     await handleClose();
     setInp({
       name: "",
       adress: "",
@@ -87,7 +87,7 @@ const FirmsModal = ({ open, handleOpen, handleClose, inp, setInp }) => {
               name="image"
               onChange={handleC}
             >
-              {" "}
+         
             </TextField>
           </Box>
           <Button

@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../redux/userSlice';
 import { Outlet, useNavigate } from 'react-router';
 import Menu from './Menu';
@@ -28,6 +28,8 @@ export default function Stock(props: Props) {
   const navi = useNavigate()
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const {data} =useSelector(state=>state.user)
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -62,7 +64,7 @@ const son = ()=>{
           </IconButton>
           <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
             <Typography variant="h6" noWrap component="div">
-            logo
+            {data?.user?.firstName[0]}
           </Typography>
           <Typography variant="h6" noWrap component="div" onClick={son}>
             logout

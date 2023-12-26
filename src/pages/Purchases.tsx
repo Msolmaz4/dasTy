@@ -27,7 +27,7 @@ export default function Purchases() {
         purchases?.map((item) => ({
           id: item?._id,
           date: item?.updatedAt,
-          firma:item?.firmId.name,
+          firma:item?.firmId?.name,
           brand: item?.brandId?.name,
           product: item?.productId?.name,
           quantity:item?.quantity,

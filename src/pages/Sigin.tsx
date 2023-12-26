@@ -4,7 +4,9 @@ import { TextField } from "formik-mui";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logUser, reset } from "../redux/userSlice";
-import React from "react";
+import React, { useState } from "react";
+import { spread } from "axios";
+
 
 interface Values {
   email: string;
@@ -15,15 +17,32 @@ const Sigin:React.FC = () => {
   const navi = useNavigate();
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.user);
+  const [sprache,setSprache] = useState(true)
 
   const derleme = () => {
     navi("/signup");
     dispatch(reset());
   };
   return (
-    <div>
-      {" "}
-      <h1>signin</h1>
+    <div >
+      <div style={{display:"flex", justifyContent:"flex-end", marginTop:"15px" ,marginRight:"10px"}}>
+      <div style={{width:"50px", height:"60px" }}>
+        {
+          sprache && ( <button onClick={()=>setSprache(!sprache)}>  <img src="/det.jpg" alt="Det" /> </button> )
+        }
+      
+      </div>
+      <div style={{width:"60px", height:"50px", }}>
+        {!sprache && (    <button onClick={()=>setSprache(!sprache)}><img src="/usa.jpg" alt="Det"  style={{borderRadius:"40%"}}/> </button>)}
+    
+      
+      </div>
+      </div>
+    <div className="flex flex-col justify-center items-center mt-36  ">
+    
+      <h1> {sprache ? "Sig In " :"REGISTEREN "}   </h1>
+      <br />
+      <br />
       <Formik
         initialValues={{
           email: "",
@@ -60,6 +79,7 @@ const Sigin:React.FC = () => {
               label="Email"
             />
             <br />
+            <br />
             <Field
               component={TextField}
               type="password"
@@ -68,6 +88,8 @@ const Sigin:React.FC = () => {
             />
             {isSubmitting && <LinearProgress />}
             <br />
+            <br />
+            <div className="flex justify-center items-center"> 
             <Button
               variant="contained"
               color="primary"
@@ -76,10 +98,14 @@ const Sigin:React.FC = () => {
             >
               Submit
             </Button>
+            </div>
           </Form>
         )}
       </Formik>
-      <div onClick={derleme}> uye degilseniz uye olunuz </div>
+      <br />
+            <br />
+      <div onClick={derleme}> {sprache ? "If you are not a member, sign up" :" Wenn Sie kein Mitglied sind, melden Sie sich an"}  </div>
+    </div>
     </div>
   );
 };
