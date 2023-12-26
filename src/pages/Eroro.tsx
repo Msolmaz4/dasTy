@@ -1,9 +1,17 @@
-
+import { Link } from "react-router-dom";
 
 const Eroro = () => {
   return (
-    <div>Eroro</div>
-  )
-}
+    <Link to="/">
+      <div
+        style={{
+          backgroundImage: "url(./er.jpg)",
+          width: "100%",
+          height: "900px",
+        }}
+      ></div>
+    </Link>
+  );
+};
 
-export default Eroro
+export default Eroro;

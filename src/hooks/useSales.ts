@@ -2,7 +2,6 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getSales, getdeletSales } from "../redux/saleSlice";
 
-
 export interface productSta {
   id: string;
   token: string;
@@ -28,10 +27,10 @@ const useSales = () => {
       console.error("alleFirma Error:", error);
     }
   };
-  const deletSales = async ({id,token}) => {
+  const deletSales = async ({ id, token }:productSta) => {
     try {
       const prod = await axios.delete(
-       ` https://17106.fullstack.clarusway.com/sales/${id}`,
+        ` https://17106.fullstack.clarusway.com/sales/${id}`,
         {
           headers: {
             Authorization: `Token ${token}`,
@@ -41,13 +40,11 @@ const useSales = () => {
 
       console.log(prod, "prod");
       dispatch(getdeletSales(prod.data.data));
-      alleSales(token)
+      alleSales(token);
     } catch (error) {
       console.error("alleFirma Error:", error);
     }
   };
-
-  
 
   return { alleSales, deletSales };
 };
