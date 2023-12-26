@@ -1,10 +1,12 @@
 
 import { useRoutes } from "react-router-dom"
-import routes from "./routes"
+
+
+import useRouten from "./hooks/useRouter.jsx"
 
 const App = () => {
-
-  return useRoutes(routes)
+  const { routes: routedData } = useRouten(); // İsimi değiştirdik
+  return useRoutes(routedData);
   
 }
 
