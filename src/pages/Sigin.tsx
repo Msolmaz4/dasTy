@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logUser, reset } from "../redux/userSlice";
 import React, { useState } from "react";
-import { spread } from "axios";
+
 
 
 interface Values {
@@ -66,7 +66,7 @@ const Sigin:React.FC = () => {
           
             navi('/stock')
             
-            console.log(data, "login olunca");
+           
           }, 500);
         }}
       >

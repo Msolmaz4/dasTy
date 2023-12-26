@@ -28,10 +28,12 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     getProSuccess: (state, { payload }) => {
-      (state.products = payload), (state.loading = false);
+      state.products = payload,
+       state.loading = false;
     },
     neueProduct: (state, { payload }) => {
-      (state.products = payload), (state.loading = false);
+      state.products = payload,
+       state.loading = false;
     },
   },
 });

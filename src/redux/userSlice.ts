@@ -1,7 +1,8 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-
+import { toast, ToastContainer } from 'react-toastify';
+  import "react-toastify/dist/ReactToastify.css";
 
 
 export interface userState {
@@ -28,11 +29,20 @@ return await data
  
 })
 export const logUser = createAsyncThunk('/pos',async(values)=>{
-
+ try {
   const { data} = await axios.post("https://17106.fullstack.clarusway.com/auth/login/",
   values)
   console.log(data,'logus')
 return data
+ } catch (error) {
+  console.log(error?.response?.data?.message)
+  toast.error( error?.response?.data?.message, {
+    position: toast.POSITION.TOP_LEFT
+  });
+ 
+ }
+
+ 
 })
 
 export const logOut = createAsyncThunk('/',async()=>{

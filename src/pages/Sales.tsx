@@ -20,7 +20,7 @@ export default function Sales() {
   const { data } = useSelector((state: RootState) => state.user);
   const { alleSales,deletSales } = useSales();
   const { sales } = useSelector((state: RootState) => state.sales);
-
+  console.log(sales,"salesDurumu")
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function Sales() {
   const handleDelete = (id) => {
 
     console.log(`id: ${id}`);
-deletSales({id:id,token:data?.token})
+   deletSales({id:id,token:data?.token})
   };
   return (
     <div>
