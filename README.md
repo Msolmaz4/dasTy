@@ -28,3 +28,67 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+```
+
+│  
+├─ .gitignore
+├─ index.html
+├─ package.json
+├─ pnpm-lock.yaml
+├─ postcss.config.js
+├─ public
+│  ├─ det.jpg
+│  ├─ usa.jpg
+│  └─ vite.svg
+├─ README.md
+├─ src
+│  ├─ App.css
+│  ├─ App.tsx
+│  ├─ assets
+│  │  ├─ 1.webp
+│  │  └─ react.svg
+│  ├─ hooks
+│  │  ├─ useFirms.ts
+│  │  ├─ useProducts.ts
+│  │  ├─ usePurchases.ts
+│  │  ├─ useSales.ts
+│  │  └─ useSprache.ts
+│  ├─ index.css
+│  ├─ main.tsx
+│  ├─ pages
+│  │  ├─ Brands.tsx
+│  │  ├─ BrandsCart.tsx
+│  │  ├─ DeatailModal.tsx
+│  │  ├─ Eroro.tsx
+│  │  ├─ FirmaCard.tsx
+│  │  ├─ Firms.tsx
+│  │  ├─ FirmsModal.tsx
+│  │  ├─ Home.tsx
+│  │  ├─ HomeAreaCard.tsx
+│  │  ├─ HomeCard.tsx
+│  │  ├─ Menu.tsx
+│  │  ├─ PrivatRouter.tsx
+│  │  ├─ ProductModal.tsx
+│  │  ├─ Products.tsx
+│  │  ├─ Purchases.tsx
+│  │  ├─ Sales.tsx
+│  │  ├─ Sigin.tsx
+│  │  ├─ Signup.tsx
+│  │  └─ Stock.tsx
+│  ├─ redux
+│  │  ├─ firmaSlice.ts
+│  │  ├─ hooks.ts
+│  │  ├─ productSlice.ts
+│  │  ├─ purchasesSlice.ts
+│  │  ├─ saleSlice.ts
+│  │  ├─ store.ts
+│  │  └─ userSlice.ts
+│  ├─ routes.tsx
+│  └─ vite-env.d.ts
+├─ tailwind.config.js
+├─ tsconfig.json
+├─ tsconfig.node.json
+└─ vite.config.ts
+
+```
