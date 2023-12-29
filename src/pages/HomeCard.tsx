@@ -4,22 +4,20 @@ import { useSelector } from "react-redux";
 import useSales from "../hooks/useSales";
 import usePurchases from "../hooks/usePurchases";
 
-
 export default function HomeCard() {
   const { sales } = useSelector((state) => state.sales);
   const { purchases } = useSelector((state) => state.purchases);
   const sal = sales?.reduce((a, b) => a + Number(b.quantity * b.price), 0);
   const pur = purchases?.reduce((a, b) => a + Number(b.price * b.quantity), 0);
   const cash = pur - sal;
- 
-   const {alleSales } =useSales()
-   const {allePurchases} = usePurchases()
 
+  const { alleSales } = useSales();
+  const { allePurchases } = usePurchases();
 
-  useEffect(()=>{
-alleSales()
-allePurchases()
-  },[])
+  useEffect(() => {
+    alleSales();
+    allePurchases();
+  }, []);
   const categories = [
     {
       title: "Sales",

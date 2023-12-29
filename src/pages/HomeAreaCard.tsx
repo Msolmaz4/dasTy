@@ -1,4 +1,6 @@
+import { Grid } from "@mui/material";
 import { AreaChart, Card, Title } from "@tremor/react";
+import { useSelector } from "react-redux";
 
 const chartdata3 = [
   {
@@ -39,61 +41,59 @@ const chartdata3 = [
   },
 ];
 
-const customTooltip = ({ payload, active }) => {
-  if (!active || !payload) return null;
-  return (
-    <div className="w-56 rounded-tremor-default text-tremor-default bg-tremor-background p-2 shadow-tremor-dropdown border border-tremor-border">
-      {payload.map((category, idx) => (
-        <div key={idx} className="flex flex-1 space-x-2.5">
-          <div
-            className={`w-1 flex flex-col bg-${category.color}-500 rounded`}
-          />
-          <div className="space-y-1">
-            <p className="text-tremor-content">{category.dataKey}</p>
-            <p className="font-medium text-tremor-content-emphasis">
-              {category.value} bpm
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+const valueFormatter = function (number) {
+  return "€" + new Intl.NumberFormat("de").format(number).toString();
 };
 
+
 const HomeAreaCard = () => {
-  return (
-    <div className="flex gap-4 mt-36">
-      <div className="w-1/2">
+  const {purchases} = useSelector(state=>state.purchases)
+  const{sales} =useSelector(state=>state.sales)
+  console.log(purchases,"grafik")
+ const  purData = purchases?.map((item)=>({
     
+      date: new Date(item.createdAt).toLocaleString("de-DE"),
+      purchase: item.amount,
+    
+  }))
+ const  salesData = sales?.map((item)=>({
+    
+      date: new Date(item.createdAt).toLocaleString("de-DE"),
+      purchase: item.amount,
+    
+  }))
+  return (
+  
+    
+      <Grid container mt={3}  spacing={3}>
+      <Grid item xs={12} md={6}>
         <Card>
           <Title>Sales</Title>
           <AreaChart
             className="h-72 mt-4"
-            data={chartdata3}
+            data={salesData}
             index="date"
-            categories={["Distance Running"]}
-            colors={["gray"]}
-            yAxisWidth={30}
-            customTooltip={customTooltip}
+            categories={["sale"]}
+            colors={["lime"]}
+            valueFormatter={valueFormatter}
           />
-        </Card>{" "}
-      </div>
-      <div className="w-1/2">
-   
+        </Card>
+      </Grid>
+      <Grid item xs={12} md={6}>
         <Card>
           <Title>Purchases</Title>
           <AreaChart
             className="h-72 mt-4"
-            data={chartdata3}
+            data={purData}
             index="date"
-            categories={["Distance Running"]}
-            colors={["blue"]}
-            yAxisWidth={30}
-            customTooltip={customTooltip}
+            categories={["purchase"]}
+            colors={["amber"]}
+            valueFormatter={valueFormatter}
           />
         </Card>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
+  
   );
 };
 
