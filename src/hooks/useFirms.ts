@@ -49,7 +49,7 @@ const useFirms = () => {
         }
       );
       console.log(veri.data, "neurFiemUseFirms");
-      dispatch(neueFirma(veri?.data));
+      //dispatch(neueFirma(veri?.data));
     await alleFirma(token);
     } catch (error) {
       console.log(error);
@@ -69,7 +69,7 @@ const useFirms = () => {
         }
       );
       console.log(veri.data, "neurFiemUseFirms");
-      dispatch(updateFirma(veri.data));
+     // dispatch(updateFirma(veri.data));
       alleFirma(token);
     } catch (error) {
       console.log(error);
