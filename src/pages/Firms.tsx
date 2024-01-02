@@ -11,7 +11,7 @@ const Firms = () => {
 
   const { data } = useSelector((state: RootState) => state.user);
   const { veri } = useSelector(state => state.firma);
-  console.log(veri ,'firmsDataveri')
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -26,7 +26,7 @@ const Firms = () => {
     alleFirma(data?.token);
  
   }, [veri?.length]);
-  console.log(veri, "fimrs");
+
 
   return (
     <div>

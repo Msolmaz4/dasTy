@@ -23,7 +23,7 @@ const usePurchases = () => {
         }
       );
 
-      console.log(prod, "prod");
+      
       dispatch(getPur(prod.data.data));
     } catch (error) {
       console.error("alleFirma Error:", error);

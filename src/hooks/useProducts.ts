@@ -21,7 +21,7 @@ const useProducts = () => {
         }
       );
 
-      console.log(prod, "prod");
+      
       dispatch(getProSuccess(prod.data));
     } catch (error) {
       console.error("alleFirma Error:", error);
@@ -29,7 +29,7 @@ const useProducts = () => {
   };
 
   const deletePro = async ({ id, token }: productSta) => {
-    console.log(id, token, "detelpro");
+   
     try {
       await axios.delete(
         `https://17106.fullstack.clarusway.com/products/${id}`,
@@ -39,7 +39,7 @@ const useProducts = () => {
           },
         }
       );
-      console.log("Firma başarıyla silindi.");
+    
       allePro(token);
     } catch (error) {
       console.error("deleteFirma Error:", error);
@@ -47,7 +47,7 @@ const useProducts = () => {
   };
 
   const neuePro = async ({ values, token }) => {
-    console.log(values, token, "neuProduct");
+    
     try {
       const veri = await axios.post(
         `https://17106.fullstack.clarusway.com/products/`,

@@ -26,8 +26,8 @@ const FirmsModal = ({ open, handleOpen, handleClose, inp, setInp }) => {
   };
   const deneme = async(e) => {
     e.preventDefault();
-     console.log(inp,"inp",data?.token)
-    await neueFirm(inp,data?.token );
+     console.log(inp,"inp",data?.token,"inpppppppppppppp")
+    await neueFirm({values:inp,token:data?.token} );
      await handleClose();
     setInp({
       name: "",

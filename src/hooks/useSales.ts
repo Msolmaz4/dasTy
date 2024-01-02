@@ -21,7 +21,7 @@ const useSales = () => {
         }
       );
 
-      console.log(prod, "prod");
+    
       dispatch(getSales(prod.data.data));
     } catch (error) {
       console.error("alleFirma Error:", error);
@@ -38,7 +38,7 @@ const useSales = () => {
         }
       );
 
-      console.log(prod, "prod");
+    
       dispatch(getdeletSales(prod.data.data));
       alleSales(token);
     } catch (error) {

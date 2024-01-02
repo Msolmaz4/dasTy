@@ -33,7 +33,7 @@ const ProductModal = ({ open, handleClose, inp, setInp, token,products }) => {
 
   const deneme = (e) => {
     e.preventDefault();
-    console.log(inp, "productChange");
+   
     neuePro({ values: inp, token: token });
     handleClose();
     setInp({

@@ -20,7 +20,7 @@ const style = {
 };
 const Brands = () => {
   const { veri } = useSelector((state: RootState) => state.firma);
-  console.log(veri, "bransd");
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

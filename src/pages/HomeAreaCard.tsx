@@ -49,7 +49,7 @@ const valueFormatter = function (number) {
 const HomeAreaCard = () => {
   const {purchases} = useSelector(state=>state.purchases)
   const{sales} =useSelector(state=>state.sales)
-  console.log(purchases,"grafik")
+ 
  const  purData = purchases?.map((item)=>({
     
       date: new Date(item.createdAt).toLocaleString("de-DE"),

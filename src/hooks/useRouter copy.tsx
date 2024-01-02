@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 const useRouten = () => {
   const {data} = useSelector(state=>state.user)
-  console.log(data?.token,"useRouten")
+
   const routes = [
     {
       path: "/",

@@ -22,7 +22,7 @@ const Products = () => {
     name: "",
   });
  
-  console.log(products?.data, "product");
+  
 
   const { allePro, deletePro } = useProducts();
   const [rows, setRows] = useState([]);
