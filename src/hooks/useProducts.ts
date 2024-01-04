@@ -2,10 +2,11 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getProSuccess, neueProduct } from "../redux/productSlice";
 
-export interface productSta {
+ interface productSta {
   id: string;
   token: string;
   error: string;
+  values:string[],
 }
 
 const useProducts = () => {
@@ -46,7 +47,7 @@ const useProducts = () => {
     }
   };
 
-  const neuePro = async ({ values, token }) => {
+  const neuePro = async ({ values, token }:productSta) => {
     
     try {
       const veri = await axios.post(

@@ -1,21 +1,25 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast} from 'react-toastify';
   import "react-toastify/dist/ReactToastify.css";
 
 
 export interface userState {
    data:User | null,
    loading:boolean,
-   error:string
+   error:string,
+   response:string[],
+   token:string,
 
 }
  
 const initialState: userState = {
 data:null,
 loading:false,
-error:''
+error:'',
+response:[],
+token:""
 }
 
 export const postUser = createAsyncThunk('/getUser',async(values)=>{
@@ -107,4 +111,5 @@ interface User {
   lastname: string;
   firstname: string;
   username: string;
+  token:string,
 }

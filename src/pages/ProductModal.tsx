@@ -10,7 +10,7 @@ import {
 
 import Select from "@mui/material/Select";
 import useProducts from "../hooks/useProducts";
-import { useSelector } from "react-redux";
+
 
 const style = {
   position: "absolute" as "absolute",

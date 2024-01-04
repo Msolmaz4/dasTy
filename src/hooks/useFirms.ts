@@ -1,6 +1,13 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getSuccess, neueFirma, updateFirma } from "../redux/firmaSlice";
+import { getSuccess,  } from "../redux/firmaSlice";
+
+interface Itok {
+  id:string | number,
+  token:string,
+  values:string[]
+}
+
 
 const useFirms = () => {
   const dispatch = useDispatch();
@@ -22,7 +29,7 @@ const useFirms = () => {
     }
   };
 
-  const deleteFirma = async ({ id, token }) => {
+  const deleteFirma = async ({ id, token }:Itok) => {
     try {
       await axios.delete(`https://17106.fullstack.clarusway.com/firms/${id}`, {
         headers: {
@@ -36,7 +43,7 @@ const useFirms = () => {
     }
   };
 
-  const neueFirm = async ( {values, token} ) => {
+  const neueFirm = async ( {values, token } :Itok) => {
     console.log(values,'neuFirma')
     try {
       const veri = await axios.post(
@@ -56,7 +63,7 @@ const useFirms = () => {
     }
   };
 
-  const updatefirma = async ( id, token,values) => {
+  const updatefirma = async ( id :string |number, token:string,values:string[]) => {
     console.log(id, values, token, "updateFirma");
     try {
       const veri = await axios.patch(

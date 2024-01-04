@@ -10,9 +10,11 @@ import Products from "../pages/Products";
 import Purchases from "../pages/Purchases";
 import Eroro from "../pages/Eroro";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+
 
 const useRouten = () => {
-  const {data} = useSelector(state=>state.user)
+  const {data} = useSelector((state: RootState)=>state.user)
   console.log(data?.token,"useRouten")
   const routes = [
     {
